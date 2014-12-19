@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!--
+   说明：通过配置文件可以配置四种类型的任务，任务的类型由task-type配置参数进行指定，以下分别说明
+        第一种：只需执行一次的任务(task-type为1)。此时task-type,task-name,task-class必须指
+               定。
+        第二种：间隔执行的任务(task-type为2)。此时task-type,task-name,task-class，task-interval
+               必须指定。且task-interval的值表示间隔的时间，以毫秒为单位。
+        第三种：每周固定的时间执行(task-type为3)。此时task-type,task-name,task-class，task-interval
+               必须指定，且task-interval的值表示每周那些天执行，具体的格式如：0,1,2,3,4,5,6
+               表示每天都需执行，2,5，则表示星期二和星期五需要执行
+               0 ..... 星期日
+               1 ..... 星期一
+        第四种：每天固定的时间执行(task-type为4)。此时task-type,task-name,task-class，task-interval
+               必须指定，且task-interval的值表示每天执行的时间点，具体的格式如：10:25,20:20
+		
+		system-startup:系统启动时是否执行，0：执行，1：不执行，默认为0；
+        注  意：若没有指定startdate的值，则系统会自动以当前的的时间作为startdate的值，并启动任务
+               但若指定了startdate的值，则startdate的格式必须是yyyy-mm-dd HH:mm:ss的格式，另
+               外startdate的时间应该比启动程序的时间晚，否则，将不能正常启动任务。
+               task-class指定了任务的运行类，必须实现Task接口
+
+               每个任务的id配置属性需要指定，且必须唯一
+               每个任务的task-name必须指定，且必须唯一
+-->
+
+<tasks>
+	  <task id="vios2Disk">
+        <task-type>4</task-type>
+        <task-interval>23:50</task-interval>
+        <task-name>vm2DiskTask</task-name>
+        <description>采集虚拟机磁盘映射</description>
+        <task-class>root.tasks.VmDiskMapping</task-class>
+    </task>
+	 <!--
+	  <task id="deviceAlertLog">
+        <task-type>2</task-type>
+        <system-startup>0</system-startup>
+        <task-interval>300000</task-interval>
+        <task-name>alertLogTask</task-name>
+        <description>事件告警</description>
+        <task-class>root.tasks.DeviceAlertTask</task-class>
+    </task>
+    
+     <task id="hmcAlertLog">
+        <task-type>2</task-type>
+        <system-startup>0</system-startup>
+        <task-interval>3600000</task-interval>
+        <task-name>hmcLogTask</task-name>
+        <description>HMC事件告警</description>
+        <task-class>root.tasks.HMCLogTask</task-class>
+    </task>
+    
+      <task id="logForward">
+        <task-type>2</task-type>
+        <system-startup>0</system-startup>
+        <task-interval>120000</task-interval>
+        <task-name>ForwardMsg</task-name>
+        <description>事件转发</description>
+        <task-class>root.tasks.ForwardMsgTask</task-class>
+    </task>
+
+    
+    <task id="tpcLogSync">
+        <task-type>2</task-type>
+        <system-startup>0</system-startup>
+        <task-interval>300000</task-interval>
+        <task-name>alertLogTask</task-name>
+        <description>TPC事件同步</description>
+        <task-class>root.tasks.TpcLogSyncTask</task-class>
+    </task>
+    
+    <task id="dataconfig">
+        <task-type>4</task-type>
+        <system-startup>1</system-startup>
+        <task-interval>23:55</task-interval>
+        <task-name>dataconfigTask</task-name>
+        <description>清除过时数据任务</description>
+        <task-class>root.tasks.DataconfigTask</task-class>
+    </task>
+    	<task id="virtualLog">
+        <task-type>2</task-type>
+        <system-startup>0</system-startup>
+        <task-interval>4380000</task-interval>
+        <task-name>alertLogTask</task-name>
+        <description>虚机日志采集</description>
+        <task-class>root.tasks.VirtualLogTask</task-class>
+    </task>
+    -->
+	<task id="collectionInfo">
+        <task-type>2</task-type>
+        <system-startup>1</system-startup>
+        <task-interval>300000</task-interval>
+        <task-name>collectionInfoLogTask</task-name>
+        <description>采集virtual,hypervisor性能配置信息</description>
+        <task-class>root.tasks.PerformanceTask</task-class>
+    </task>
+    <task id="collectionConfigure">
+        <task-type>4</task-type>
+        <task-interval>23:59</task-interval>
+        <task-name>TaskcollectionConfigure</task-name>
+        <description>采集virtual,hypervisor配置信息</description>
+        <task-class>root.tasks.ConfigureTask</task-class>
+    </task><!--
+    <task id="hwresConfigure">
+        <task-type>4</task-type>
+        <task-interval>23:59</task-interval>
+        <task-name>HypervisorFibreTask</task-name>
+        <description>采集物理机光钎卡等硬件信息</description>
+        <task-class>root.tasks.HvFibreChannel</task-class>
+    </task>
+    
+     --><task id="hourlyTask">
+        <task-type>2</task-type>
+        <system-startup>0</system-startup>
+        <task-interval>120000</task-interval>
+        <task-name>hourCount</task-name>
+        <description>hourly统计</description>
+        <task-class>root.tasks.HourCountTask</task-class>
+    </task>
+    
+    <task id="dailyTask">
+        <task-type>4</task-type>
+        <system-startup>1</system-startup>
+        <task-interval>2:00</task-interval>
+        <task-name>dayCount</task-name>
+        <description>daily统计</description>
+        <task-class>root.tasks.DayCountTask</task-class>
+    </task>
+    <!--
+    <task id="checkVmTask">
+        <task-type>2</task-type>
+        <system-startup>0</system-startup>
+        <task-interval>1200000</task-interval>
+        <task-name>checkVmStatus</task-name>
+        <description>检查虚拟机的状态</description>
+        <task-class>root.tasks.DecideVirtualOperateStatus</task-class>
+    </task>
+    
+    -->
+    
+    
+</tasks>

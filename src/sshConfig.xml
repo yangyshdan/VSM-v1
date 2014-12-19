@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sshSources>
+
+	<!-- hmc ssh配置 -->
+	<sshSource id="s1">
+		<property name="host_name">9.125.40.158</property>
+		<property name="user">USERID</property>
+		<property name="password">Passw0rd(</property>
+		<property name="port">22</property>
+		<property name="interval">60</property>
+	</sshSource>
+	
+	<!-- nmon ssh配置 -->
+	<sshSource id="s2">
+		<property name="user">root</property>
+		<property name="password">1234567A</property>
+		<property name="port">22</property>
+	</sshSource>
+	
+</sshSources>
