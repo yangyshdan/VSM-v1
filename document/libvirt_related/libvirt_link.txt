@@ -1,0 +1,2 @@
+1. API介绍入口: http://www.libvirt.org/docs.html
+2. 获取性能API: http://www.libvirt.org/html/libvirt-libvirt-domain.html#virConnectGetAllDomainStats
