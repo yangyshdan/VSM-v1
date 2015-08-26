@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="GBK"?>
+<!--
+   说明：此文件用于配置系统中需要使用的数据源，在同一个系统中可以同时配置多个数据源。但只有一个是属于缺省的数据源。
+        在系统中有多个数据源的情况下，缺省数据源必须使用default属性进行说明。但在系统中只有一个数据源的情况下，
+        此属性可以忽略。
+        注意：系统中的所有数据源都使用C3P0实现，另外每一个datasource都必须要指定id，否则会跳过此定义，不会
+             建立相应的数据源。
+-->
+<datasources default="srDB">
+<!-- 
+ 	<datasource id="tpc">
+        <property name="driver-name">com.ibm.db2.jcc.DB2Driver</property>
+        <property name="url">jdbc:db2://127.0.0.1:50000/TPCDBZBX:currentSchema=SR2;</property>
+        <property name="user">db2admin</property>
+        <property name="password">111111</property>
+        <property name="initialPoolSize">1</property>
+        <property name="minPoolSize">1</property>
+        <property name="maxPoolSize">10</property>
+        <property name="checkoutTimeout">60000</property>
+        <property name="maxStatements">100</property>
+        <property name="idleConnectionTestPeriod">3000</property>
+        <property name="acquireIncrement">2</property>
+    </datasource>   
+ -->
+    <datasource id="srDB">  
+		<property name="driver-name">com.mysql.jdbc.Driver</property>
+		<property name="url">jdbc:mysql://127.0.0.1:3306/demodb?characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull</property> 
+		<property name="user">root</property>
+		<property name="password">123456</property>
+		<property name="initialPoolSize">1</property>
+		<property name="minPoolSize">1</property>
+		<property name="maxPoolSize">20</property>
+		<property name="checkoutTimeout">60000</property>
+		<property name="maxStatements">100</property>
+		<property name="idleConnectionTestPeriod">3000</property>
+		<property name="acquireIncrement">2</property>
+	</datasource>
+
+
+	 <datasource id="tpc">
+        <property name="driver-name">com.ibm.db2.jcc.DB2Driver</property>
+        <property name="url">jdbc:db2://120.24.236.152:50000/TPCDB:currentSchema=SR2;</property>
+        <property name="user">db2admin</property>
+        <property name="password">123456</property>
+        <property name="initialPoolSize">1</property>
+        <property name="minPoolSize">1</property>
+        <property name="maxPoolSize">10</property>
+        <property name="checkoutTimeout">60000</property>
+        <property name="maxStatements">100</property>
+        <property name="idleConnectionTestPeriod">3000</property>
+        <property name="acquireIncrement">2</property>
+    </datasource>
+    
+</datasources>
